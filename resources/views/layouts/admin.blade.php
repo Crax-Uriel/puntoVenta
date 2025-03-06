@@ -35,18 +35,96 @@
             <ul class="side-menu">
                 {{-- <li><a href="{{url('/admin')}}" class="active"><i class='bx bxs-dashboard icon'></i>Principal</a></li> --}}
                 {{-- <li class="divider" data-text="main">Main</li> --}}
-                <li>
+
+                {{-- seccion de configuracion  --}}
+                {{-- <li>
                     <a href="#"><i class='bx bxs-cog icon' ></i>Configuración <i class='bx bx-chevron-right icon-right' ></i></a>
                     <ul class="side-dropdown">
-                        <li><a href="{{url('admin/empresas')}}">Listado de configuración </a></li>
-                        <li><a href="#">Editar configuración</a></li>
-                        <li><a href="#">opcion</a></li>
-                        <li><a href="#">opcion</a></li>
+                        <li><a href="{{url('admin/empresas/create')}}">Editar Configuracion</a></li>
+                        
+                    </ul>
+                </li> --}}
+                <li><a href="{{url('admin/roles')}}"><i class='bx bxs-user icon' ></i>Roles</a></li>
+
+                <li><a href="{{url('admin/usuarios')}}"><i class='bx bxs-group icon' ></i>Usuarios</a></li>
+
+                <li><a href="{{url('admin/categorias')}}"><i class='bx bxs-category icon' ></i>Categorias</a></li>
+
+                <li><a href="{{url('admin/productos')}}"><i class='bx bx-list-plus icon' ></i>Productos</a></li>
+
+                <li><a href="{{url('admin/proveedores')}}"><i class='bx bx-group icon' ></i>Proveedores</a></li>
+
+
+                <li><a href="{{url('admin/compras')}}"><i class='bx bx-cart-alt icon' ></i>Compras</a></li>
+                
+                {{-- Roles
+                <li>
+                    <a href="#"><i class='bx bxs-user icon' ></i>Roles <i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/roles')}}">Listado de roles</a></li>
+                        li><a href="{{url('admin/roles/create')}}">Creacion de roles</a></li> 
+                        
+                    </ul>
+                </li> --}}
+
+                {{-- Usuarios
+                <li>
+                    <a href="#"><i class='bx bxs-group icon' ></i>Usuarios<i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/usuarios')}}">Listado de usuarios</a></li>
+                        {<li><a href="{{url('admin/usuarios/create')}}">Creacion de usuarios</a></li> 
+                        
+                    </ul>
+                </li> --}}
+
+                {{-- Categorias
+                <li>
+                    <a href="#"><i class='bx bxs-category icon' ></i>Categorias<i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/categorias')}}">Listado de categorias</a></li>
+                        <li><a href="{{url('admin/usuarios/create')}}">Creacion de usuarios</a></li> 
+                        
                     </ul>
                 </li>
-                <li><a href="#"><i class='bx bxs-chart icon' ></i> opcion</a></li>
-                <li><a href="#"><i class='bx bxs-widget icon' ></i> opcion</a></li>
-                <li class="divider" data-text="seccion">opcion</li>
+                --}}
+
+                {{-- Productos
+                <li>
+                    <a href="#"><i class='bx bx-list-plus icon' ></i>Productos<i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/productos')}}">Listado de Productos</a></li>
+                        <li><a href="{{url('admin/usuarios/create')}}">Creacion de usuarios</a></li> 
+                        
+                    </ul>
+                </li>
+                --}}
+
+                {{-- proveedores
+                <li>
+                    <a href="#"><i class='bx bx-group icon' ></i>Proveedores<i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/proveedores')}}">Listado de Proveedores</a></li>
+                        <li><a href="{{url('admin/usuarios/create')}}">Creacion de usuarios</a></li> 
+                        
+                    </ul>
+                </li>
+                --}}
+                {{-- proveedores
+
+                <li>
+                    <a href="#"><i class='bx bx-cart-alt icon' ></i>Compras<i class='bx bx-chevron-right icon-right' ></i></a>
+                    <ul class="side-dropdown">
+                        <li><a href="{{url('admin/compras')}}">Listado de Compras</a></li>
+                        <li><a href="{{url('admin/usuarios/create')}}">Creacion de usuarios</a></li>
+                        
+                    </ul>
+                </li>
+                --}}
+
+
+                
+
+                {{-- <li class="divider" data-text="seccion">opcion</li>
                 <li><a href="#"><i class='bx bx-table icon' ></i> opcion</a></li>
                 <li>
                     <a href="#"><i class='bx bxs-notepad icon' ></i> opcion <i class='bx bx-chevron-right icon-right' ></i></a>
@@ -56,7 +134,9 @@
                         <li><a href="#">opcion</a></li>
                         <li><a href="#">opcion</a></li>
                     </ul>
-                </li>
+                </li> --}}
+
+
             </ul>
         </section>
         <!-- FIN MENU -->
@@ -69,7 +149,8 @@
                 
                 {{-- Salir de sesion  --}}
                 <div class="profile">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Perfil">
+                    {{ Auth::user()->name }} 
+                    <img src="https://th.bing.com/th/id/OIP.f4wLVIL_SURqRFpL7fdr2QHaHa?rs=1&pid=ImgDetMain" alt="Perfil"> 
                     <ul class="profile-link">
                         <li ><a  href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" ><i class='bx bxs-arrow-from-right' ></i> Salir</a></li>
@@ -93,7 +174,19 @@
 
         </section>
         <!-- FIN NAVBAR -->
-    
+        @if (($message = Session::get('mensaje')) && ($icono = Session::get('icono')) )
+                        
+            <script>
+                Swal.fire({
+                    position: "top-center",
+                    icon: "{{$icono}}",
+                    title: "{{$message}}",
+                    showConfirmButton: false,
+                    timer: 4600
+                });
+            </script>
+        @endif
+        
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="{{asset('js/script.js')}} "></script>
 
@@ -117,4 +210,5 @@
         <!-- AdminLTE App -->
         <script src="{{url('dist/js/adminlte.min.js')}}"></script>
     </body>
+    
 </html>

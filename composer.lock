@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e51287f4e9473c1c9e3a1976ac25fb5",
+    "content-hash": "988537235dfe34a03ff88769359cdc25",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2813,6 +2813,91 @@
                 }
             ],
             "time": "2024-07-20T21:41:07+00:00"
+        },
+        {
+            "name": "proengsoft/laravel-jsvalidation",
+            "version": "v4.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/proengsoft/laravel-jsvalidation.git",
+                "reference": "5a5053f9f9177d4129e2c34d7de5eac4524ffca6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/proengsoft/laravel-jsvalidation/zipball/5a5053f9f9177d4129e2c34d7de5eac4524ffca6",
+                "reference": "5a5053f9f9177d4129e2c34d7de5eac4524ffca6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "^9.0|^10.0|^11.0",
+                "illuminate/contracts": "^9.0|^10.0|^11.0",
+                "illuminate/http": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "illuminate/translation": "^9.0|^10.0|^11.0",
+                "illuminate/validation": "^9.0|^10.0|^11.0",
+                "illuminate/view": "^9.0|^10.0|^11.0",
+                "php": "^8.0",
+                "symfony/http-foundation": "^6.0|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^9.5|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "JsValidator": "Proengsoft\\JsValidation\\Facades\\JsValidatorFacade"
+                    },
+                    "providers": [
+                        "Proengsoft\\JsValidation\\JsValidationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Proengsoft\\JsValidation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Moreno",
+                    "email": "albert@memorylimit.net",
+                    "homepage": "https://github.com/torrentalle"
+                },
+                {
+                    "name": "Kieran Brahney",
+                    "email": "kieran@supportpal.com",
+                    "homepage": "https://github.com/bytestream"
+                }
+            ],
+            "description": "Validate forms transparently with Javascript reusing your Laravel Validation Rules, Messages, and FormRequest",
+            "homepage": "https://github.com/proengsoft/laravel-jsvalidation",
+            "keywords": [
+                "form",
+                "javascript",
+                "jquery",
+                "laravel",
+                "proengsoft",
+                "validation",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/proengsoft/laravel-jsvalidation/issues",
+                "source": "https://github.com/proengsoft/laravel-jsvalidation/tree/v4.9.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bytestream",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-06T15:29:02+00:00"
         },
         {
             "name": "psr/clock",
@@ -5895,6 +5980,143 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.3.0"
             },
             "time": "2024-12-21T16:25:41+00:00"
+        },
+        {
+            "name": "typicms/bootforms",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypiCMS/bootforms.git",
+                "reference": "e5696597e44b2a86fc305f29e5cb1edb3a1fc0e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypiCMS/bootforms/zipball/e5696597e44b2a86fc305f29e5cb1edb3a1fc0e8",
+                "reference": "e5696597e44b2a86fc305f29e5cb1edb3a1fc0e8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0.2",
+                "typicms/form": "^3.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.4",
+                "nunomaduro/larastan": "^2.0",
+                "orchestra/testbench": "^7.4",
+                "php-coveralls/php-coveralls": "~2.5.2",
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "BootForm": "TypiCMS\\BootForms\\Facades\\BootForm"
+                    },
+                    "providers": [
+                        "TypiCMS\\BootForms\\BootFormsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TypiCMS\\BootForms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                },
+                {
+                    "name": "Samuel De Backer",
+                    "email": "sdebacker@gmail.com"
+                }
+            ],
+            "description": "Just a Formbuilder with some Bootstrap 5 specific conveniences. Remembers old input, retrieves error messages and handles all your boilerplate Bootstrap markup automatically.",
+            "support": {
+                "issues": "https://github.com/TypiCMS/bootforms/issues",
+                "source": "https://github.com/TypiCMS/bootforms/tree/4.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/typicms",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-05-15T10:28:29+00:00"
+        },
+        {
+            "name": "typicms/form",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypiCMS/form.git",
+                "reference": "9ed483a5a74d58b15e00620049b949eb61987776"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypiCMS/form/zipball/9ed483a5a74d58b15e00620049b949eb61987776",
+                "reference": "9ed483a5a74d58b15e00620049b949eb61987776",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0.2"
+            },
+            "require-dev": {
+                "illuminate/support": ">=9.0",
+                "mockery/mockery": "^1.4.4",
+                "nunomaduro/larastan": "^2.0",
+                "orchestra/testbench": "^7.4",
+                "php-coveralls/php-coveralls": "~2.5.2",
+                "phpunit/php-code-coverage": "^9.2",
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Form": "TypiCMS\\Form\\Facades\\Form"
+                    },
+                    "providers": [
+                        "TypiCMS\\Form\\FormServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TypiCMS\\Form\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                },
+                {
+                    "name": "Samuel De Backer",
+                    "email": "sdebacker@gmail.com"
+                }
+            ],
+            "description": "A basic framework agnostic form building package with a few extra niceties like remembering old input and retrieving error messages.",
+            "support": {
+                "issues": "https://github.com/TypiCMS/form/issues",
+                "source": "https://github.com/TypiCMS/form/tree/3.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/typicms",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-05-15T10:39:05+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

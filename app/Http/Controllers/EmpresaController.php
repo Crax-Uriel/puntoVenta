@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpresaController extends Controller
 {
@@ -15,12 +16,15 @@ class EmpresaController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function buscar_pais($pais){
+
+    }
     public function create()
     {
-        return view('admin.empresas.create');
+        $paises= DB::table('countries')->get();
+        $estados= DB::table('states')->get();
+        //$codigos= DB::table('currencies')->get();
+        return view('admin.empresas.create',compact('paises','estados'));
     }
 
     /**
