@@ -97,6 +97,37 @@
         </div>
 
 
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{url('admin/clientes')}}" class="info-box-icon bg-dark">
+                    <span ><i class="bi bi-person-raised-hand"></i></span>
+
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Clientes</span>
+                    <span class="info-box-number">Total: {{$total_clientes}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{url('admin/ventas')}}" class="info-box-icon bg-info">
+                    <span ><i class="bi bi-currency-exchange"></i></span>
+
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Ventas</span>
+                    <span class="info-box-number">Total: {{$total_compras}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+
 
         
 

@@ -25,7 +25,9 @@
                                 <td><b>Imagen</b></td>
                                 <td><b>Producto</b></td>
                                 <td><b>Descripcion</b></td>
-                                <td ><b>Stock</b></td>
+                                {{-- <td ><b>Stock</b></td> --}}
+                                <td ><b>Stock minimo</b></td>
+                                <td ><b>Stock maximo</b></td>
                                 <td><b>Costo</b></td>
                                 <td><b>Precio</b></td>
                                 <td><b>Acciones</b></td>
@@ -42,7 +44,9 @@
                                         </td>
                                         <td>{{ $producto ->nombre_producto}}</td>
                                         <td>{{ $producto ->descripcion_producto}}</td>
-                                        <td style="background-color: rgba(243, 255, 76, 0.333)">{{ $producto ->stock_producto}}</td>
+                                        {{-- <td style="background-color: rgba(243, 255, 76, 0.333)">{{ $producto ->stock_producto}}</td> --}}
+                                        <td>{{ $producto ->stock_minimo_producto}}</td>
+                                        <td>{{ $producto ->stock_maximo_producto}}</td>
                                         <td>{{ $producto ->costo_producto}}</td>
                                         <td>{{ $producto ->precio_producto}}</td>
                                         

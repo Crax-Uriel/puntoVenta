@@ -24,7 +24,7 @@ class UsuarioController extends Controller
         //$datos = request()->all();
         //return response()->json($datos);
         $request->validate([
-            'name' =>'required|regex:/^[A-Za-z\s]+$/|max:100',
+            'name' =>'required|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/|max:100',
             'email' =>'required|max:250|unique:users',
             'password' =>'required|max:250|confirmed',
         ]);

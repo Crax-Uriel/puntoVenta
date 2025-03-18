@@ -1,19 +1,24 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DetalleCompraController;
+use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TmpCompraController;
+use App\Http\Controllers\TmpVentaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VentaController;
 use App\Models\DetalleCompra;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
@@ -124,4 +129,71 @@ Route::controller(DetalleCompraController::class)->middleware('auth')->group(fun
     Route::delete('/admin/compras/detalle/{id}', 'destroy')->name('admin.detalle.compras.destroy');
 });
 
+
+//rutas para clientes
+Route::controller(ClienteController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/clientes', 'index')->name('admin.clientes.index');
+    Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create');
+    Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store');
+    Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show');
+    Route::get('/admin/clientes/{id}/edit',  'edit')->name('admin.clientes.edit');
+    Route::put('/admin/clientes/{id}', 'update')->name('admin.clientes.update');
+    Route::get('/admin/clientes/{id}/confirm-delete', 'confirmDelete')->name('admin.clientes.confirmDelete');
+    Route::delete('/admin/clientes/{id}', 'destroy')->name('admin.clientes.destroy');
+});
+
+
+//rutas para ventas
+
+Route::controller(VentaController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/ventas', 'index')->name('admin.ventas.index');
+    Route::get('/admin/ventas/create', 'create')->name('admin.ventas.create');
+    Route::post('/admin/ventas/create',  'store')->name('admin.ventas.store');
+
+    Route::get('/admin/ventas/pdf/{id}','pdf')->name('admin.ventas.pdf');
+
+    Route::get('/admin/ventas/{id}','show')->name('admin.ventas.show');
+    Route::get('/admin/ventas/{id}/edit',  'edit')->name('admin.ventas.edit');
+    Route::put('/admin/ventas/{id}', 'update')->name('admin.ventas.update');
+    Route::get('/admin/ventas/{id}/confirm-delete', 'confirmDelete')->name('admin.ventas.confirmDelete');
+    Route::delete('/admin/ventas/{id}', 'destroy')->name('admin.ventas.destroy');
+    Route::post('/admin/ventas/cliente/create',  'cliente_store')->name('admin.ventas.cliente.store');
+
+});
+
+
+//rutas para las ventas temporales tmp_ventas
+Route::controller(TmpVentaController::class)->middleware('auth')->group(function(){
+    Route::post('/admin/ventas/create/tmp',  'tmp_ventas')->name('admin.ventas.tmp_ventas');
+    Route::delete('/admin/ventas/create/tmp/{id}', 'destroy')->name('admin.ventas.tmp_ventas.destroy');
+    
+});
+
+//rutas para detalle de la ventas 
+Route::controller(DetalleVentaController::class)->middleware('auth')->group(function(){
+    Route::post('/admin/ventas/detalle/create', 'store')->name('admin.detalle.ventas.store');
+    Route::delete('/admin/ventas/detalle/{id}', 'destroy')->name('admin.detalle.ventas.destroy');
+});
+
+
+
+//tuta para el inenatrio
+Route::controller(InventarioController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/inventarios', 'index')->name('admin.inventarios.index');
+    
+});
+
+
+//rutas para arqueo
+/*
+Route::controller(ClienteController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/clientes', 'index')->name('admin.clientes.index');
+    Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create');
+    Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store');
+    Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show');
+    Route::get('/admin/clientes/{id}/edit',  'edit')->name('admin.clientes.edit');
+    Route::put('/admin/clientes/{id}', 'update')->name('admin.clientes.update');
+    Route::get('/admin/clientes/{id}/confirm-delete', 'confirmDelete')->name('admin.clientes.confirmDelete');
+    Route::delete('/admin/clientes/{id}', 'destroy')->name('admin.clientes.destroy');
+});*/
 

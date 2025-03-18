@@ -64,7 +64,9 @@ class CompraController extends Controller
             
             $detalle_compra->save();
 
-            $producto->stock_producto +=  $detalle_compra->cantidad_compra;
+            //$producto->stock_producto +=  $detalle_compra->cantidad_compra;
+            $producto->stock_producto +=  $tmp_Compra->cantidad_compra;
+
             $producto->save();
     
         }

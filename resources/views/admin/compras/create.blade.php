@@ -61,7 +61,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <table class="table table-striped table-bordered table-hover table-responsive">
+                                                        <table id="example1" class="table table-striped table-bordered table-hover table-responsive">
                                                             <thead>
                                                                 <tr style="text-align: center">
                                                                     <td><b>Nro</b></td>

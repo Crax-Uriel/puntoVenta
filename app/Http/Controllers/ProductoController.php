@@ -95,6 +95,7 @@ class ProductoController extends Controller
             'costo_producto' =>'required|numeric|regex:/^\d{1,4}(\.\d{1,2})?$/',
             'precio_producto' =>'required|numeric|regex:/^\d{1,4}(\.\d{1,2})?$/',
             'fecha_ingreso_producto' => 'required|date',
+            'categoria_id' =>'required',
         ]);
 
         $producto->codigo_producto = $request->codigo_producto;

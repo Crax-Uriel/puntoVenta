@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Cliente;
 use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\User;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -19,6 +21,8 @@ class AdminController extends Controller
         $total_productos = Producto::count();
         $total_proveedores = Proveedor::count();
         $total_compras = Compra::count();
-        return view('admin.index',compact('total_roles','total_usuarios','total_categorias','total_productos','total_proveedores','total_compras'));
+        $total_clientes = Cliente::count();
+        $total_ventas= Venta::count();
+        return view('admin.index',compact('total_roles','total_usuarios','total_categorias','total_productos','total_proveedores','total_compras','total_clientes','total_ventas'));
     }
 }

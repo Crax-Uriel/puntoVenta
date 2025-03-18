@@ -19,6 +19,8 @@ class DetalleCompraController extends Controller
             if($detalle_Compra_existe){
                 $detalle_Compra_existe->cantidad_compra +=$request->cantidad_compra;
                 $detalle_Compra_existe->save();
+                $producto->stock_producto -= $request->cantidad_compra;
+                $producto->save();
                 return response()->json(['success'=>true, 'message'=>'El producto fue encontrado']);
             }else{
                 $detalle_Compra = new DetalleCompra();
@@ -26,6 +28,8 @@ class DetalleCompraController extends Controller
                 $detalle_Compra->compra_id = $compra_id;
                 $detalle_Compra->producto_id = $producto->id;
                 $detalle_Compra->save();
+                $producto->stock_producto -= $request->cantidad_compra;
+                $producto->save();
                 return response()->json(['success'=>true, 'message'=>'El producto fue encontrado']);
             }
             
@@ -84,7 +88,19 @@ class DetalleCompraController extends Controller
      */
     public function destroy($id)
     {
+
+        $detalleCompra = DetalleCompra::find($id);
+        $producto = Producto::find($detalleCompra->producto_id);
+
+        $producto->stock_producto += $detalleCompra->cantidad_compra;
+        $producto->save();
+
         DetalleCompra::destroy($id);
+        
+        //return redirect()->route('admin.compras.index')->with('mensaje','Se elimino la compra de manera correcta')->with('icono','success');
+
+        
+        
         return response()->json(['success'=>true]);
     }
 }

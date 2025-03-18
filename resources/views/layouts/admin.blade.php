@@ -54,8 +54,15 @@
 
                 <li><a href="{{url('admin/proveedores')}}"><i class='bx bx-group icon' ></i>Proveedores</a></li>
 
+                <li><a href="{{url('admin/inventarios')}}"><i class='bx bxs-package icon' ></i>Iventario</a></li>
+
 
                 <li><a href="{{url('admin/compras')}}"><i class='bx bx-cart-alt icon' ></i>Compras</a></li>
+
+                <li><a href="{{url('admin/clientes')}}"><i class='bx bxs-user-detail icon' ></i>Clientes</a></li>
+
+                <li><a href="{{url('admin/ventas')}}"><i class='bx bx-money icon' ></i>Ventas</a></li>
+
                 
                 {{-- Roles
                 <li>
