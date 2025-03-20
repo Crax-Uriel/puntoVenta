@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArqueoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
@@ -184,16 +185,27 @@ Route::controller(InventarioController::class)->middleware('auth')->group(functi
 });
 
 
-//rutas para arqueo
-/*
-Route::controller(ClienteController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/clientes', 'index')->name('admin.clientes.index');
-    Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create');
-    Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store');
-    Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show');
-    Route::get('/admin/clientes/{id}/edit',  'edit')->name('admin.clientes.edit');
-    Route::put('/admin/clientes/{id}', 'update')->name('admin.clientes.update');
-    Route::get('/admin/clientes/{id}/confirm-delete', 'confirmDelete')->name('admin.clientes.confirmDelete');
-    Route::delete('/admin/clientes/{id}', 'destroy')->name('admin.clientes.destroy');
-});*/
+//rutas para arqueos
+
+Route::controller(ArqueoController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/arqueos', 'index')->name('admin.arqueos.index');
+    Route::get('/admin/arqueos/create', 'create')->name('admin.arqueos.create');
+    Route::post('/admin/arqueos/create',  'store')->name('admin.arqueos.store');
+    Route::get('/admin/arqueos/{id}','show')->name('admin.arqueos.show');
+    Route::get('/admin/arqueos/{id}/edit',  'edit')->name('admin.arqueos.edit');
+
+    Route::get('/admin/arqueos/{id}/ingreso-egreso',  'ingresoegreso')->name('admin.arqueos.ingresoegreso');
+    Route::post('/admin/arqueos/create_ingresos_egresos',  'store_ingresos_egresos')->name('admin.arqueos.store_ingresos_egresos');
+
+    Route::get('/admin/arqueos/{id}/cierre',  'cierre')->name('admin.arqueos.cierre');
+    Route::post('/admin/arqueos/create_cierre',  'store_cierre')->name('admin.arqueos.store_cierre');
+
+
+    Route::put('/admin/arqueos/{id}', 'update')->name('admin.arqueos.update');
+    Route::get('/admin/arqueos/{id}/confirm-delete', 'confirmDelete')->name('admin.arqueos.confirmDelete');
+    Route::delete('/admin/arqueos/{id}', 'destroy')->name('admin.arqueos.destroy');
+
+    
+
+});
 

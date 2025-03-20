@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arqueo;
 use App\Models\Compra;
 use App\Models\DetalleCompra;
+use App\Models\MoviminetoCaja;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\TmpCompra;
@@ -14,8 +16,9 @@ class CompraController extends Controller
     
     public function index()
     {
+        $arqueoAbierto = Arqueo::whereNull('fecha_cierre')->first();
         $compras = Compra::with('detalles','proveedor')->get();
-        return view('admin.compras.index', compact('compras'));
+        return view('admin.compras.index', compact('compras','arqueoAbierto'));
 
     }
 
@@ -51,6 +54,16 @@ class CompraController extends Controller
         $compra->precio_total = $request->precio_total;
         $compra ->proveedor_id = $request->proveedor_id;
         $compra->save(); 
+
+        // registrar el arqueo 
+        $arqueo_id =  Arqueo::whereNull('fecha_cierre')->first();
+        $movimiento  = new MoviminetoCaja();
+        $movimiento->tipo = "Egreso"; 
+        $movimiento->monto = $request->precio_total; 
+        $movimiento->descripcion ="Compra de productos"; 
+        $movimiento->arqueo_id = $arqueo_id->id ; 
+        $movimiento->save(); 
+
         $session_id = session()->getId();
         $tmp_Compras = TmpCompra::where('session_id',$session_id)->get();
         
@@ -115,6 +128,9 @@ class CompraController extends Controller
         $compra->precio_total = $request->precio_total;
         $compra ->proveedor_id = $request->proveedor_id;
         $compra->save(); 
+
+        
+
 
         return redirect()->route('admin.compras.index')->with('mensaje','Se actulizo la compra de manera correcta')->with('icono','success');
     }

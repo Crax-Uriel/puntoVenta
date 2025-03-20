@@ -120,7 +120,7 @@
                 </a>
                 <div class="info-box-content">
                     <span class="info-box-text">Ventas</span>
-                    <span class="info-box-number">Total: {{$total_compras}}</span>
+                    <span class="info-box-number">Total: {{$total_ventas}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

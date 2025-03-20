@@ -63,6 +63,8 @@
 
                 <li><a href="{{url('admin/ventas')}}"><i class='bx bx-money icon' ></i>Ventas</a></li>
 
+                <li><a href="{{url('admin/arqueos')}}"><i class='bx bx-money icon' ></i>Apertura-Cierre-caja</a></li>
+
                 
                 {{-- Roles
                 <li>

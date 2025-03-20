@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Arqueo;
 use App\Models\Cliente;
 use App\Models\DetalleVenta;
+use App\Models\MoviminetoCaja;
 use App\Models\Producto;
 use App\Models\TmpVenta;
 use App\Models\Venta;
@@ -18,8 +20,9 @@ class VentaController extends Controller
      */
     public function index()
     {
+        $arqueoAbierto = Arqueo::whereNull('fecha_cierre')->first();
         $ventas = Venta::with('detallesVenta','cliente')->get();
-        return view('admin.ventas.index', compact('ventas'));
+        return view('admin.ventas.index', compact('ventas','arqueoAbierto'));
         //return view('admin.ventas.index','ventas');
     }
 
@@ -77,6 +80,19 @@ class VentaController extends Controller
         $venta->precio_total = $request->precio_total;
         $venta ->cliente_id = $request->cliente_id;
         $venta->save(); 
+
+
+        // registrar el arqueo 
+        $arqueo_id =  Arqueo::whereNull('fecha_cierre')->first();
+        $movimiento  = new MoviminetoCaja();
+        $movimiento->tipo = "Ingreso"; 
+        $movimiento->monto = $request->precio_total; 
+        $movimiento->descripcion ="Venta de productos"; 
+        $movimiento->arqueo_id = $arqueo_id->id ; 
+        $movimiento->save(); 
+
+
+
         $session_id = session()->getId();
 
         $tmp_Ventas = TmpVenta::where('session_id',$session_id)->get();

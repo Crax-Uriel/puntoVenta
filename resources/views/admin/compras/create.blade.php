@@ -415,7 +415,7 @@
                         "previous": "Anterior"
                     }
                 },
-                "responsive": true, "lengthChange": true, "autoWidth": false,
+                "responsive": true, "lengthChange": false, "autoWidth": false,
                 buttons: [{
                     
                     

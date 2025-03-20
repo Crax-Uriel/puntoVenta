@@ -11,9 +11,20 @@
                 <div class="card-header">
                     <h3 class="card-title">Compras Registradas</h3>
                     <div class="card-tools">
+
+                        @if($arqueoAbierto) 
                         <a href="{{url('/admin/compras/create')}}" class="btn btn-primary">
                             <i class="bi bi-plus-lg"></i> Registrar
                         </a>
+                            
+                        @else
+                        <a href="{{url('/admin/arqueos/create')}}" class="btn btn-danger">
+                            <i class="bi bi-plus-lg"></i>Abrir caja
+                        </a>
+                        @endif
+
+
+                        
                     </div>
                 </div>
                 <div class="card-body" >
