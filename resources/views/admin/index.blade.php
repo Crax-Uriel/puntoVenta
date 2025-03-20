@@ -129,6 +129,23 @@
 
 
 
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{url('admin/arqueos')}}" class="info-box-icon bg-success">
+                    <span ><i class="fa fa-cash-register"></i></span>
+
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text">Arqueos</span>
+                    <span class="info-box-number">Total: {{$total_arqueos}}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+
+
         
 
     </div>

@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Barryvdh\DomPDF\Facade\PDF;
+
 
 class UsuarioController extends Controller
 {
@@ -77,6 +79,12 @@ class UsuarioController extends Controller
 
         $usuario =User::findorFail($id);
         return view('admin.usuarios.delete', compact('usuario','roles'));
+    }
+
+    public function reporte() {
+        $usuarios = User::all();
+        $pdf = PDF::loadView('admin.usuarios.reporte', compact('usuarios'));
+        return $pdf->stream();
     }
 
     public function destroy($id){

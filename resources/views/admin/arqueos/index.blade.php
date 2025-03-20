@@ -11,7 +11,9 @@ Clientes
                 <div class="card-header">
                     <h3 class="card-title">Arqueos Registrados</h3>
                     <div class="card-tools">
-
+                        <a href="{{url('/admin/arqueos/reporte')}}" target="_blank" class="btn btn-danger" >
+                            <i class="fa fa-file-pdf"></i> Reporte
+                        </a>
                         @if($arqueoAbierto) 
                         
                             

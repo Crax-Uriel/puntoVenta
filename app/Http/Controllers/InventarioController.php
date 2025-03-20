@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class InventarioController extends Controller
 {
@@ -63,5 +64,11 @@ class InventarioController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function reporte() {
+        $productos = Producto::all();
+        $pdf = PDF::loadView('admin.inventarios.reporte', compact('productos'));
+        return $pdf->stream();
     }
 }

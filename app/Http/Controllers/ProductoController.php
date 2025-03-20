@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\PDF;
 
 
 class ProductoController extends Controller
@@ -135,5 +136,11 @@ class ProductoController extends Controller
         Producto::destroy($id);
         Storage::delete(['public/'.$producto->imagen]);
         return redirect()->route('admin.productos.index')->with('mensaje','Se elimino el producto de manera correcta')->with('icono','success');
+    }
+
+    public function reporte() {
+        $productos = Producto::all();
+        $pdf = PDF::loadView('admin.productos.reporte', compact('productos'));
+        return $pdf->stream();
     }
 }

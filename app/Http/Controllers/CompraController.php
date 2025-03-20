@@ -10,6 +10,8 @@ use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\TmpCompra;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
+
 
 class CompraController extends Controller
 {
@@ -155,4 +157,11 @@ class CompraController extends Controller
         Compra::destroy($id);
         return redirect()->route('admin.compras.index')->with('mensaje','Se elimino la compra de manera correcta')->with('icono','success');
     }
+
+    public function reporte() {
+        $compras = Compra::all();
+        $pdf = PDF::loadView('admin.compras.reporte', compact('compras'));
+        return $pdf->stream();
+    }
+
 }

@@ -11,6 +11,9 @@
                 <div class="card-header">
                     <h3 class="card-title">Usuarios Registrados</h3>
                     <div class="card-tools">
+                        <a href="{{url('/admin/usuarios/reporte')}}" target="_blank" class="btn btn-danger" >
+                            <i class="fa fa-file-pdf"></i> Reporte
+                        </a>
                         <a href="{{url('/admin/usuarios/create')}}" class="btn btn-primary">
                             <i class="bi bi-plus-lg"></i> Registrar
                         </a>

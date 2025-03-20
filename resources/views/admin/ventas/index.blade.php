@@ -11,6 +11,9 @@ Ventas
                 <div class="card-header">
                     <h3 class="card-title">Ventas Registradas</h3>
                     <div class="card-tools">
+                        <a href="{{url('/admin/ventas/reporte')}}" target="_blank" class="btn btn-danger" >
+                            <i class="fa fa-file-pdf"></i> Reporte
+                        </a>
                         @if($arqueoAbierto) 
                         <a href="{{url('/admin/ventas/create')}}" class="btn btn-primary">
                             <i class="bi bi-plus-lg"></i> Registrar
@@ -30,7 +33,7 @@ Ventas
                         <thead>
                             <tr style="text-align: center">
                                 <td><b>Nro</b></td>
-                                <td><b>Fecha de la compra</b></td>
+                                <td><b>Fecha de la venta</b></td>
                                 <td><b>Productos adquiridos</b></td>
                                 {{-- <td><b>Cantidad de la compra</b></td> --}}
                                 <td><b>Total de la venta</b></td>

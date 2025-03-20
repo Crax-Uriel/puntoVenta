@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ClienteController extends Controller
 {
@@ -131,6 +132,12 @@ class ClienteController extends Controller
         $cliente =Cliente::findorFail($id);
         $cliente->delete();
         return redirect()->route('admin.clientes.index')->with('mensaje','Se elimino al cliente de manera correcta')->with('icono','success');
+    }
+
+    public function reporte() {
+        $clientes = Cliente::all();
+        $pdf = PDF::loadView('admin.clientes.reporte', compact('clientes'));
+        return $pdf->stream();
     }
 
 

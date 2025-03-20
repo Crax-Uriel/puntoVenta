@@ -56,7 +56,6 @@
 
                 <li><a href="{{url('admin/inventarios')}}"><i class='bx bxs-package icon' ></i>Iventario</a></li>
 
-
                 <li><a href="{{url('admin/compras')}}"><i class='bx bx-cart-alt icon' ></i>Compras</a></li>
 
                 <li><a href="{{url('admin/clientes')}}"><i class='bx bxs-user-detail icon' ></i>Clientes</a></li>

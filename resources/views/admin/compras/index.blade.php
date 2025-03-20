@@ -11,6 +11,9 @@
                 <div class="card-header">
                     <h3 class="card-title">Compras Registradas</h3>
                     <div class="card-tools">
+                        <a href="{{url('/admin/compras/reporte')}}" target="_blank" class="btn btn-danger" >
+                            <i class="fa fa-file-pdf"></i> Reporte
+                        </a>
 
                         @if($arqueoAbierto) 
                         <a href="{{url('/admin/compras/create')}}" class="btn btn-primary">

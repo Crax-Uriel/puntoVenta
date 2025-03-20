@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class RoleController extends Controller
 {
@@ -109,6 +110,13 @@ class RoleController extends Controller
         Role::destroy($id);
         return redirect()->route('admin.roles.index')->with('mensaje','Se elimino el rol de manera correcta')->with('icono','success');
     }
+
+    public function reporte() {
+        $roles = Role::all();
+        $pdf = PDF::loadView('admin.roles.reporte', compact('roles'));
+        return $pdf->stream();
+    }
+
 
     protected function setValidator(Request $request)
     {

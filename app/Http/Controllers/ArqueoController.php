@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Arqueo;
 use App\Models\MoviminetoCaja;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
+
 
 class ArqueoController extends Controller
 {
@@ -159,5 +161,17 @@ class ArqueoController extends Controller
         return redirect()->route('admin.arqueos.index')->with('mensaje','Se elimino el arqueo de manera correcta')->with('icono','success');
 
     }
+
+    public function reporte() {
+        $arqueos = Arqueo::with('movimientos')->get();
+        foreach($arqueos as $arqueo){
+            $arqueo->total_ingresos= $arqueo->movimientos->where('tipo','Ingreso')->sum('monto');
+            $arqueo->total_egresos= $arqueo->movimientos->where('tipo','Egreso')->sum('monto');
+
+        }
+        $pdf = PDF::loadView('admin.arqueos.reporte', compact('arqueos'));
+        return $pdf->stream();
+    }
+
 }
 

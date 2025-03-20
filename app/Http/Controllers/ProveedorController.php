@@ -6,6 +6,8 @@ use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
+use Barryvdh\DomPDF\Facade\PDF;
+
 class ProveedorController extends Controller
 {
     protected $validationRules;
@@ -110,6 +112,12 @@ class ProveedorController extends Controller
         $proveedor =Proveedor::findorFail($id);
         Proveedor::destroy($id);
         return redirect()->route('admin.proveedores.index')->with('mensaje','Se elimino el proveedor de manera correcta')->with('icono','success');
+    }
+
+    public function reporte() {
+        $proveedores = Proveedor::all();
+        $pdf = PDF::loadView('admin.proveedores.reporte', compact('proveedores'));
+        return $pdf->stream();
     }
 
     protected function setValidator(Request $request)

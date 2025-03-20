@@ -190,5 +190,11 @@ class VentaController extends Controller
         return redirect()->route('admin.ventas.index')->with('mensaje','Se elimino la venta de manera correcta')->with('icono','success');
     }
 
+    public function reporte() {
+        $ventas = Venta::with('cliente')->get();
+        $pdf = PDF::loadView('admin.ventas.reporte', compact('ventas'));
+        return $pdf->stream();
+    }
+
     
 }

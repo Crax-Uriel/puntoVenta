@@ -44,6 +44,8 @@ Route::controller(EmpresaController::class)->middleware('auth')->group(function(
 //rutas para roles
 Route::controller(RoleController::class)->middleware('auth')->group(function(){
     Route::get('/admin/roles', 'index')->name('admin.roles.index');
+    Route::get('/admin/roles/reporte', 'reporte')->name('admin.roles.reporte');
+
     Route::get('/admin/roles/create', 'create')->name('admin.roles.create');
     Route::post('/admin/roles/create',  'store')->name('admin.roles.store');
     Route::get('/admin/roles/{id}','show')->name('admin.roles.show');
@@ -57,6 +59,8 @@ Route::controller(RoleController::class)->middleware('auth')->group(function(){
 //rutas para usuarios
 Route::controller(UsuarioController::class)->middleware('auth')->group(function(){
     Route::get('/admin/usuarios', 'index')->name('admin.usuarios.index');
+    Route::get('/admin/usuarios/reporte', 'reporte')->name('admin.usuarios.reporte');
+
     Route::get('/admin/usuarios/create', 'create')->name('admin.usuarios.create');
     Route::post('/admin/usuarios/create',  'store')->name('admin.usuarios.store');
     Route::get('/admin/usuarios/{id}','show')->name('admin.usuarios.show');
@@ -70,6 +74,8 @@ Route::controller(UsuarioController::class)->middleware('auth')->group(function(
 //rutas para categorias
 Route::controller(CategoriaController::class)->middleware('auth')->group(function(){
     Route::get('/admin/categorias', 'index')->name('admin.categorias.index');
+    Route::get('/admin/categorias/reporte', 'reporte')->name('admin.categorias.reporte');
+
     Route::get('/admin/categorias/create', 'create')->name('admin.categorias.create');
     Route::post('/admin/categorias/create',  'store')->name('admin.categorias.store');
     Route::get('/admin/categorias/{id}','show')->name('admin.categorias.show');
@@ -82,6 +88,8 @@ Route::controller(CategoriaController::class)->middleware('auth')->group(functio
 //rutas para productos
 Route::controller(ProductoController::class)->middleware('auth')->group(function(){
     Route::get('/admin/productos', 'index')->name('admin.productos.index');
+    Route::get('/admin/productos/reporte', 'reporte')->name('admin.productos.reporte');
+
     Route::get('/admin/productos/create', 'create')->name('admin.productos.create');
     Route::post('/admin/productos/create',  'store')->name('admin.productos.store');
     Route::get('/admin/productos/{id}','show')->name('admin.productos.show');
@@ -95,6 +103,8 @@ Route::controller(ProductoController::class)->middleware('auth')->group(function
 //rutas para proveedores
 Route::controller(ProveedorController::class)->middleware('auth')->group(function(){
     Route::get('/admin/proveedores', 'index')->name('admin.proveedores.index');
+    Route::get('/admin/proveedores/reporte', 'reporte')->name('admin.proveedores.reporte');
+
     Route::get('/admin/proveedores/create', 'create')->name('admin.proveedores.create');
     Route::post('/admin/proveedores/create',  'store')->name('admin.proveedores.store');
     Route::get('/admin/proveedores/{id}','show')->name('admin.proveedores.show');
@@ -108,6 +118,7 @@ Route::controller(ProveedorController::class)->middleware('auth')->group(functio
 //rutas para compras
 Route::controller(CompraController::class)->middleware('auth')->group(function(){
     Route::get('/admin/compras', 'index')->name('admin.compras.index');
+    Route::get('/admin/compras/reporte', 'reporte')->name('admin.compras.reporte');
     Route::get('/admin/compras/create', 'create')->name('admin.compras.create');
     Route::post('/admin/compras/create',  'store')->name('admin.compras.store');
     Route::get('/admin/compras/{id}','show')->name('admin.compras.show');
@@ -134,6 +145,8 @@ Route::controller(DetalleCompraController::class)->middleware('auth')->group(fun
 //rutas para clientes
 Route::controller(ClienteController::class)->middleware('auth')->group(function(){
     Route::get('/admin/clientes', 'index')->name('admin.clientes.index');
+    Route::get('/admin/clientes/reporte', 'reporte')->name('admin.clientes.reporte');
+
     Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create');
     Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store');
     Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show');
@@ -148,6 +161,8 @@ Route::controller(ClienteController::class)->middleware('auth')->group(function(
 
 Route::controller(VentaController::class)->middleware('auth')->group(function(){
     Route::get('/admin/ventas', 'index')->name('admin.ventas.index');
+    Route::get('/admin/ventas/reporte', 'reporte')->name('admin.ventas.reporte');
+
     Route::get('/admin/ventas/create', 'create')->name('admin.ventas.create');
     Route::post('/admin/ventas/create',  'store')->name('admin.ventas.store');
 
@@ -181,6 +196,8 @@ Route::controller(DetalleVentaController::class)->middleware('auth')->group(func
 //tuta para el inenatrio
 Route::controller(InventarioController::class)->middleware('auth')->group(function(){
     Route::get('/admin/inventarios', 'index')->name('admin.inventarios.index');
+    Route::get('/admin/inventarios/reporte', 'reporte')->name('admin.inventarios.reporte');
+
     
 });
 
@@ -189,6 +206,8 @@ Route::controller(InventarioController::class)->middleware('auth')->group(functi
 
 Route::controller(ArqueoController::class)->middleware('auth')->group(function(){
     Route::get('/admin/arqueos', 'index')->name('admin.arqueos.index');
+    Route::get('/admin/arqueos/reporte', 'reporte')->name('admin.arqueos.reporte');
+
     Route::get('/admin/arqueos/create', 'create')->name('admin.arqueos.create');
     Route::post('/admin/arqueos/create',  'store')->name('admin.arqueos.store');
     Route::get('/admin/arqueos/{id}','show')->name('admin.arqueos.show');

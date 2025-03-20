@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class CategoriaController extends Controller
 {
@@ -91,5 +92,11 @@ class CategoriaController extends Controller
         
         //Categoria::destroy($id);
         //return redirect()->route('admin.categorias.index')->with('mensaje','Se elimino la categorias de manera correcta')->with('icono','success');
+    }
+
+    public function reporte() {
+        $categorias = Categoria::all();
+        $pdf = PDF::loadView('admin.categorias.reporte', compact('categorias'));
+        return $pdf->stream();
     }
 }
