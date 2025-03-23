@@ -236,6 +236,10 @@
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" id="empresa_proveedor" disabled>
                                         <input type="text" name="proveedor_id" class="form-control" id="id_proveedor"  hidden >
+                                        @error('proveedor_id')
+                                                <small style="color: red">{{$message}}</small>
+                                            @enderror
+
                                     </div>
                                 </div>
                                 <br>

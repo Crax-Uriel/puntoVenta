@@ -44,25 +44,52 @@
                         
                     </ul>
                 </li> --}}
+                @can('Roles')
                 <li><a href="{{url('admin/roles')}}"><i class='bx bxs-user icon' ></i>Roles</a></li>
+                @endcan
 
+                @can('Permisos')
+                <li><a href="{{url('admin/permisos')}}"><i class='bx bx-lock-alt icon' ></i>Permisos</a></li>
+                @endcan
+
+                @can('Usuarios')
                 <li><a href="{{url('admin/usuarios')}}"><i class='bx bxs-group icon' ></i>Usuarios</a></li>
+                @endcan
 
+                @can('Categorias')
                 <li><a href="{{url('admin/categorias')}}"><i class='bx bxs-category icon' ></i>Categorias</a></li>
+                @endcan
 
+                @can('Productos')
                 <li><a href="{{url('admin/productos')}}"><i class='bx bx-list-plus icon' ></i>Productos</a></li>
+                @endcan
 
+                @can('Proveedores')
                 <li><a href="{{url('admin/proveedores')}}"><i class='bx bx-group icon' ></i>Proveedores</a></li>
+                @endcan
 
+                @can('Inventario')
                 <li><a href="{{url('admin/inventarios')}}"><i class='bx bxs-package icon' ></i>Iventario</a></li>
+                @endcan
+
+                @can('Compras')
 
                 <li><a href="{{url('admin/compras')}}"><i class='bx bx-cart-alt icon' ></i>Compras</a></li>
+                @endcan
 
+                @can('Clientes')
                 <li><a href="{{url('admin/clientes')}}"><i class='bx bxs-user-detail icon' ></i>Clientes</a></li>
+                @endcan
+
+                @can('Ventas')
 
                 <li><a href="{{url('admin/ventas')}}"><i class='bx bx-money icon' ></i>Ventas</a></li>
+                @endcan
+
+                @can('Arqueos')
 
                 <li><a href="{{url('admin/arqueos')}}"><i class='bx bx-money icon' ></i>Apertura-Cierre-caja</a></li>
+                @endcan
 
                 
                 {{-- Roles

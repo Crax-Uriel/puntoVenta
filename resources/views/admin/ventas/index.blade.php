@@ -33,6 +33,7 @@ Ventas
                         <thead>
                             <tr style="text-align: center">
                                 <td><b>Nro</b></td>
+                                <td><b>Cliente</b></td>
                                 <td><b>Fecha de la venta</b></td>
                                 <td><b>Productos adquiridos</b></td>
                                 {{-- <td><b>Cantidad de la compra</b></td> --}}
@@ -45,6 +46,7 @@ Ventas
                                 @foreach ($ventas as $venta)
                                     <tr>    
                                         <td>{{ $contador++}}</td>
+                                        <td>{{ $venta ->cliente->nombre_cliente}} {{ $venta ->cliente->apellido_paterno_cliente}} {{ $venta ->cliente->apellido_materno_cliente}} </td>
                                         <td>{{ $venta ->fecha_venta}}</td>
                                         <td>
                                             <ul>

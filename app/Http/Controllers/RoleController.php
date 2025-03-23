@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
 use Barryvdh\DomPDF\Facade\PDF;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -35,7 +36,6 @@ class RoleController extends Controller
         ];
 
         $this->model = $model;
-
 
     }
 
@@ -115,6 +115,56 @@ class RoleController extends Controller
         $roles = Role::all();
         $pdf = PDF::loadView('admin.roles.reporte', compact('roles'));
         return $pdf->stream();
+    }
+
+    public function asignar($id){
+        $rol =Role::findorFail($id);
+        //$permisos = Permission::all();
+
+        $permisos = Permission::all()->groupBy(function($permiso){
+            if(stripos($permiso->name,'rol' !== false)){
+                return 'Roles';
+            }elseif(stripos($permiso->name,'permi' !== false)){
+                return 'Permisos';
+            }elseif(stripos($permiso->name,'usu' !== false)){
+                return 'Usuarios';
+            }elseif(stripos($permiso->name,'cat' !== false)){
+                return 'Categorias';
+            }elseif(stripos($permiso->name,'prod' !== false)){
+                return 'Productos';
+            }elseif(stripos($permiso->name,'prov' !== false)){
+                return 'Proveedores';
+            }elseif(stripos($permiso->name,'inventario' !== false)){
+                return 'Invetario';
+            }elseif(stripos($permiso->name,'comp' !== false)){
+                return 'Compras';
+            }elseif(stripos($permiso->name,'cli' !== false)){
+                return 'Clientes';
+            }elseif(stripos($permiso->name,'vent' !== false)){
+                return 'Ventas';
+            }elseif(stripos($permiso->name,'arq' !== false)){
+                return 'Arqueo';
+            }
+        });
+
+        return view('admin.roles.asignar',compact('permisos','rol'));
+    }
+
+    public function update_asignar(Request $request, $id){
+
+        //$datos = request()->all();
+        //return response()->json($datos);
+        $request->validate([
+            'permisos' =>'required|array',
+            
+        ]);
+        $rol =Role::findorFail($id);
+        $rol->permissions()->sync($request->input('permisos'));
+        
+        return back()
+        ->with('mensaje', 'Se actualizó los permisos al rol de manera correcta')
+        ->with('icono', 'success');
+
     }
 
 

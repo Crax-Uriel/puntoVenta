@@ -6,6 +6,7 @@
     <h1 class="title">Bienvenido {{ Auth::user()->name }} </h1>
     <hr>
     <div class="row">
+        @can('Roles')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/roles')}}" class="info-box-icon bg-info">
@@ -20,7 +21,8 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('Usuarios')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/usuarios')}}" class="info-box-icon bg-success">
@@ -35,7 +37,9 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
+        @can('Categorias')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/categorias')}}" class="info-box-icon bg-primary">
@@ -50,7 +54,9 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
+        @can('Productos')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/productos')}}" class="info-box-icon bg-warning">
@@ -65,10 +71,11 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('Proveedores')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <a href="{{url('admin/productos')}}" class="info-box-icon bg-secondary">
+                <a href="{{url('admin/proveedores')}}" class="info-box-icon bg-secondary">
                     <span ><i class="bi bi-people-fill"></i></span>
 
                 </a>
@@ -80,10 +87,11 @@
             </div>
             <!-- /.info-box -->
         </div>
-
+        @endcan
+        @can('Compras')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <a href="{{url('admin/productos')}}" class="info-box-icon bg-danger">
+                <a href="{{url('admin/compras')}}" class="info-box-icon bg-danger">
                     <span ><i class="bi bi-cart4"></i></span>
 
                 </a>
@@ -95,8 +103,9 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
-
+        @can('Clientes')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/clientes')}}" class="info-box-icon bg-dark">
@@ -111,7 +120,9 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
+        @can('Ventas')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/ventas')}}" class="info-box-icon bg-info">
@@ -126,9 +137,10 @@
             </div>
             <!-- /.info-box -->
         </div>
+        @endcan
 
 
-
+        @can('Arqueos')
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <a href="{{url('admin/arqueos')}}" class="info-box-icon bg-success">
@@ -143,13 +155,7 @@
             </div>
             <!-- /.info-box -->
         </div>
-
-
-
-        
-
+        @endcan
     </div>
-    
-    
 @endsection
 

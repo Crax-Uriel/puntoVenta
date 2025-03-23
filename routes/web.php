@@ -8,6 +8,7 @@ use App\Http\Controllers\DetalleCompraController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RoleController;
@@ -43,89 +44,94 @@ Route::controller(EmpresaController::class)->middleware('auth')->group(function(
 
 //rutas para roles
 Route::controller(RoleController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/roles', 'index')->name('admin.roles.index');
-    Route::get('/admin/roles/reporte', 'reporte')->name('admin.roles.reporte');
+    Route::get('/admin/roles', 'index')->name('admin.roles.index')->middleware('can:Roles');
+    Route::get('/admin/roles/reporte', 'reporte')->name('admin.roles.reporte')->middleware('can:Roles');
 
-    Route::get('/admin/roles/create', 'create')->name('admin.roles.create');
-    Route::post('/admin/roles/create',  'store')->name('admin.roles.store');
-    Route::get('/admin/roles/{id}','show')->name('admin.roles.show');
-    Route::get('/admin/roles/{id}/edit',  'edit')->name('admin.roles.edit');
-    Route::put('/admin/roles/{id}', 'update')->name('admin.roles.update');
-    Route::get('/admin/roles/{id}/confirm-delete', 'confirmDelete')->name('admin.roles.confirmDelete');
-    Route::delete('/admin/roles/{id}', 'destroy')->name('admin.roles.destroy');
+    Route::get('/admin/roles/create', 'create')->name('admin.roles.create')->middleware('can:Roles');
+    Route::post('/admin/roles/create',  'store')->name('admin.roles.store')->middleware('can:Roles');
+    Route::get('/admin/roles/{id}','show')->name('admin.roles.show')->middleware('can:Roles');
+    Route::get('/admin/roles/{id}/edit',  'edit')->name('admin.roles.edit')->middleware('can:Roles');
+    Route::put('/admin/roles/{id}', 'update')->name('admin.roles.update')->middleware('can:Roles');
+
+    Route::get('/admin/roles/{id}/asignar',  'asignar')->name('admin.roles.asignar')->middleware('can:Roles');
+    Route::put('/admin/roles/asignar/{id}', 'update_asignar')->name('admin.roles.update_asignar')->middleware('can:Roles');
+
+
+    Route::get('/admin/roles/{id}/confirm-delete', 'confirmDelete')->name('admin.roles.confirmDelete')->middleware('can:Roles');
+    Route::delete('/admin/roles/{id}', 'destroy')->name('admin.roles.destroy')->middleware('can:Roles');
 });
 
 
 //rutas para usuarios
 Route::controller(UsuarioController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/usuarios', 'index')->name('admin.usuarios.index');
-    Route::get('/admin/usuarios/reporte', 'reporte')->name('admin.usuarios.reporte');
+    Route::get('/admin/usuarios', 'index')->name('admin.usuarios.index')->middleware('can:Usuarios');
+    Route::get('/admin/usuarios/reporte', 'reporte')->name('admin.usuarios.reporte')->middleware('can:Usuarios');
 
-    Route::get('/admin/usuarios/create', 'create')->name('admin.usuarios.create');
-    Route::post('/admin/usuarios/create',  'store')->name('admin.usuarios.store');
-    Route::get('/admin/usuarios/{id}','show')->name('admin.usuarios.show');
-    Route::get('/admin/usuarios/{id}/edit',  'edit')->name('admin.usuarios.edit');
-    Route::put('/admin/usuarios/{id}', 'update')->name('admin.usuarios.update');
-    Route::get('/admin/usuarios/{id}/confirm-delete', 'confirmDelete')->name('admin.usuarios.confirmDelete');
-    Route::delete('/admin/usuarios/{id}', 'destroy')->name('admin.usuarios.destroy');
+    Route::get('/admin/usuarios/create', 'create')->name('admin.usuarios.create')->middleware('can:Usuarios');
+    Route::post('/admin/usuarios/create',  'store')->name('admin.usuarios.store')->middleware('can:Usuarios');
+    Route::get('/admin/usuarios/{id}','show')->name('admin.usuarios.show')->middleware('can:Usuarios');
+    Route::get('/admin/usuarios/{id}/edit',  'edit')->name('admin.usuarios.edit')->middleware('can:Usuarios');
+    Route::put('/admin/usuarios/{id}', 'update')->name('admin.usuarios.update')->middleware('can:Usuarios');
+    Route::get('/admin/usuarios/{id}/confirm-delete', 'confirmDelete')->name('admin.usuarios.confirmDelete')->middleware('can:Usuarios');
+    Route::delete('/admin/usuarios/{id}', 'destroy')->name('admin.usuarios.destroy')->middleware('can:Usuarios');
 });
 
 
 //rutas para categorias
 Route::controller(CategoriaController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/categorias', 'index')->name('admin.categorias.index');
-    Route::get('/admin/categorias/reporte', 'reporte')->name('admin.categorias.reporte');
+    Route::get('/admin/categorias', 'index')->name('admin.categorias.index')->middleware('can:Categorias');
+    Route::get('/admin/categorias/reporte', 'reporte')->name('admin.categorias.reporte')->middleware('can:Categorias');
 
-    Route::get('/admin/categorias/create', 'create')->name('admin.categorias.create');
-    Route::post('/admin/categorias/create',  'store')->name('admin.categorias.store');
-    Route::get('/admin/categorias/{id}','show')->name('admin.categorias.show');
-    Route::get('/admin/categorias/{id}/edit',  'edit')->name('admin.categorias.edit');
-    Route::put('/admin/categorias/{id}', 'update')->name('admin.categorias.update');
-    Route::get('/admin/categorias/{id}/confirm-delete', 'confirmDelete')->name('admin.categorias.confirmDelete');
-    Route::delete('/admin/categorias/{id}', 'destroy')->name('admin.categorias.destroy');
+    Route::get('/admin/categorias/create', 'create')->name('admin.categorias.create')->middleware('can:Categorias');
+    Route::post('/admin/categorias/create',  'store')->name('admin.categorias.store')->middleware('can:Categorias');
+    Route::get('/admin/categorias/{id}','show')->name('admin.categorias.show')->middleware('can:Categorias');
+    Route::get('/admin/categorias/{id}/edit',  'edit')->name('admin.categorias.edit')->middleware('can:Categorias');
+    Route::put('/admin/categorias/{id}', 'update')->name('admin.categorias.update')->middleware('can:Categorias');
+    Route::get('/admin/categorias/{id}/confirm-delete', 'confirmDelete')->name('admin.categorias.confirmDelete')->middleware('can:Categorias');
+    Route::delete('/admin/categorias/{id}', 'destroy')->name('admin.categorias.destroy')->middleware('can:Categorias');
 });
 
 //rutas para productos
 Route::controller(ProductoController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/productos', 'index')->name('admin.productos.index');
-    Route::get('/admin/productos/reporte', 'reporte')->name('admin.productos.reporte');
+    Route::get('/admin/productos', 'index')->name('admin.productos.index')->middleware('can:Productos');
+    Route::get('/admin/productos/reporte', 'reporte')->name('admin.productos.reporte')->middleware('can:Productos');
 
-    Route::get('/admin/productos/create', 'create')->name('admin.productos.create');
-    Route::post('/admin/productos/create',  'store')->name('admin.productos.store');
-    Route::get('/admin/productos/{id}','show')->name('admin.productos.show');
-    Route::get('/admin/productos/{id}/edit',  'edit')->name('admin.productos.edit');
-    Route::put('/admin/productos/{id}', 'update')->name('admin.productos.update');
-    Route::get('/admin/productos/{id}/confirm-delete', 'confirmDelete')->name('admin.productos.confirmDelete');
-    Route::delete('/admin/productos/{id}', 'destroy')->name('admin.productos.destroy');
+    Route::get('/admin/productos/create', 'create')->name('admin.productos.create')->middleware('can:Productos');
+    Route::post('/admin/productos/create',  'store')->name('admin.productos.store')->middleware('can:Productos');
+    Route::get('/admin/productos/{id}','show')->name('admin.productos.show')->middleware('can:Productos');
+    Route::get('/admin/productos/{id}/edit',  'edit')->name('admin.productos.edit')->middleware('can:Productos');
+    Route::put('/admin/productos/{id}', 'update')->name('admin.productos.update')->middleware('can:Productos');
+    Route::get('/admin/productos/{id}/confirm-delete', 'confirmDelete')->name('admin.productos.confirmDelete')->middleware('can:Productos');
+    Route::delete('/admin/productos/{id}', 'destroy')->name('admin.productos.destroy')->middleware('can:Productos');
 });
 
 
 //rutas para proveedores
 Route::controller(ProveedorController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/proveedores', 'index')->name('admin.proveedores.index');
-    Route::get('/admin/proveedores/reporte', 'reporte')->name('admin.proveedores.reporte');
+    Route::get('/admin/proveedores', 'index')->name('admin.proveedores.index')->middleware('can:Proveedores');
+    Route::get('/admin/proveedores/reporte', 'reporte')->name('admin.proveedores.reporte')->middleware('can:Proveedores');
 
-    Route::get('/admin/proveedores/create', 'create')->name('admin.proveedores.create');
-    Route::post('/admin/proveedores/create',  'store')->name('admin.proveedores.store');
-    Route::get('/admin/proveedores/{id}','show')->name('admin.proveedores.show');
-    Route::get('/admin/proveedores/{id}/edit',  'edit')->name('admin.proveedores.edit');
-    Route::put('/admin/proveedores/{id}', 'update')->name('admin.proveedores.update');
-    Route::get('/admin/proveedores/{id}/confirm-delete', 'confirmDelete')->name('admin.proveedores.confirmDelete');
-    Route::delete('/admin/proveedores/{id}', 'destroy')->name('admin.proveedores.destroy');
+    Route::get('/admin/proveedores/create', 'create')->name('admin.proveedores.create')->middleware('can:Proveedores');
+    Route::post('/admin/proveedores/create',  'store')->name('admin.proveedores.store')->middleware('can:Proveedores');
+    Route::get('/admin/proveedores/{id}','show')->name('admin.proveedores.show')->middleware('can:Proveedores');
+    Route::get('/admin/proveedores/{id}/edit',  'edit')->name('admin.proveedores.edit')->middleware('can:Proveedores');
+    Route::put('/admin/proveedores/{id}', 'update')->name('admin.proveedores.update')->middleware('can:Proveedores');
+    Route::get('/admin/proveedores/{id}/confirm-delete', 'confirmDelete')->name('admin.proveedores.confirmDelete')->middleware('can:Proveedores');
+    Route::delete('/admin/proveedores/{id}', 'destroy')->name('admin.proveedores.destroy')->middleware('can:Proveedores');
 });
 
 
 //rutas para compras
 Route::controller(CompraController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/compras', 'index')->name('admin.compras.index');
-    Route::get('/admin/compras/reporte', 'reporte')->name('admin.compras.reporte');
-    Route::get('/admin/compras/create', 'create')->name('admin.compras.create');
-    Route::post('/admin/compras/create',  'store')->name('admin.compras.store');
-    Route::get('/admin/compras/{id}','show')->name('admin.compras.show');
-    Route::get('/admin/compras/{id}/edit',  'edit')->name('admin.compras.edit');
-    Route::put('/admin/compras/{id}', 'update')->name('admin.compras.update');
-    Route::get('/admin/compras/{id}/confirm-delete', 'confirmDelete')->name('admin.compras.confirmDelete');
-    Route::delete('/admin/compras/{id}', 'destroy')->name('admin.compras.destroy');
+    Route::get('/admin/compras', 'index')->name('admin.compras.index')->middleware('can:Compras');
+    Route::get('/admin/compras/reporte', 'reporte')->name('admin.compras.reporte')->middleware('can:Compras');
+    Route::get('/admin/compras/create', 'create')->name('admin.compras.create')->middleware('can:Compras');
+    Route::post('/admin/compras/create',  'store')->name('admin.compras.store')->middleware('can:Compras');
+    Route::get('/admin/compras/{id}','show')->name('admin.compras.show')->middleware('can:Compras');
+    Route::get('/admin/compras/{id}/edit',  'edit')->name('admin.compras.edit')->middleware('can:Compras');
+    Route::put('/admin/compras/{id}', 'update')->name('admin.compras.update')->middleware('can:Compras');
+    Route::get('/admin/compras/{id}/confirm-delete', 'confirmDelete')->name('admin.compras.confirmDelete')->middleware('can:Compras');
+    Route::delete('/admin/compras/{id}', 'destroy')->name('admin.compras.destroy')->middleware('can:Compras');
 });
 
 //rutas para las compras temporales tmp_compras
@@ -144,36 +150,36 @@ Route::controller(DetalleCompraController::class)->middleware('auth')->group(fun
 
 //rutas para clientes
 Route::controller(ClienteController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/clientes', 'index')->name('admin.clientes.index');
-    Route::get('/admin/clientes/reporte', 'reporte')->name('admin.clientes.reporte');
+    Route::get('/admin/clientes', 'index')->name('admin.clientes.index')->middleware('can:Clientes');
+    Route::get('/admin/clientes/reporte', 'reporte')->name('admin.clientes.reporte')->middleware('can:Clientes');
 
-    Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create');
-    Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store');
-    Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show');
-    Route::get('/admin/clientes/{id}/edit',  'edit')->name('admin.clientes.edit');
-    Route::put('/admin/clientes/{id}', 'update')->name('admin.clientes.update');
-    Route::get('/admin/clientes/{id}/confirm-delete', 'confirmDelete')->name('admin.clientes.confirmDelete');
-    Route::delete('/admin/clientes/{id}', 'destroy')->name('admin.clientes.destroy');
+    Route::get('/admin/clientes/create', 'create')->name('admin.clientes.create')->middleware('can:Clientes');
+    Route::post('/admin/clientes/create',  'store')->name('admin.clientes.store')->middleware('can:Clientes');
+    Route::get('/admin/clientes/{id}','show')->name('admin.clientes.show')->middleware('can:Clientes');
+    Route::get('/admin/clientes/{id}/edit',  'edit')->name('admin.clientes.edit')->middleware('can:Clientes');
+    Route::put('/admin/clientes/{id}', 'update')->name('admin.clientes.update')->middleware('can:Clientes');
+    Route::get('/admin/clientes/{id}/confirm-delete', 'confirmDelete')->name('admin.clientes.confirmDelete')->middleware('can:Clientes');
+    Route::delete('/admin/clientes/{id}', 'destroy')->name('admin.clientes.destroy')->middleware('can:Clientes');
 });
 
 
 //rutas para ventas
 
 Route::controller(VentaController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/ventas', 'index')->name('admin.ventas.index');
-    Route::get('/admin/ventas/reporte', 'reporte')->name('admin.ventas.reporte');
+    Route::get('/admin/ventas', 'index')->name('admin.ventas.index')->middleware('can:Ventas');
+    Route::get('/admin/ventas/reporte', 'reporte')->name('admin.ventas.reporte')->middleware('can:Ventas');
 
-    Route::get('/admin/ventas/create', 'create')->name('admin.ventas.create');
-    Route::post('/admin/ventas/create',  'store')->name('admin.ventas.store');
+    Route::get('/admin/ventas/create', 'create')->name('admin.ventas.create')->middleware('can:Ventas');
+    Route::post('/admin/ventas/create',  'store')->name('admin.ventas.store')->middleware('can:Ventas');
 
-    Route::get('/admin/ventas/pdf/{id}','pdf')->name('admin.ventas.pdf');
+    Route::get('/admin/ventas/pdf/{id}','pdf')->name('admin.ventas.pdf')->middleware('can:Ventas');
 
-    Route::get('/admin/ventas/{id}','show')->name('admin.ventas.show');
-    Route::get('/admin/ventas/{id}/edit',  'edit')->name('admin.ventas.edit');
-    Route::put('/admin/ventas/{id}', 'update')->name('admin.ventas.update');
-    Route::get('/admin/ventas/{id}/confirm-delete', 'confirmDelete')->name('admin.ventas.confirmDelete');
-    Route::delete('/admin/ventas/{id}', 'destroy')->name('admin.ventas.destroy');
-    Route::post('/admin/ventas/cliente/create',  'cliente_store')->name('admin.ventas.cliente.store');
+    Route::get('/admin/ventas/{id}','show')->name('admin.ventas.show')->middleware('can:Ventas');
+    Route::get('/admin/ventas/{id}/edit',  'edit')->name('admin.ventas.edit')->middleware('can:Ventas');
+    Route::put('/admin/ventas/{id}', 'update')->name('admin.ventas.update')->middleware('can:Ventas');
+    Route::get('/admin/ventas/{id}/confirm-delete', 'confirmDelete')->name('admin.ventas.confirmDelete')->middleware('can:Ventas');
+    Route::delete('/admin/ventas/{id}', 'destroy')->name('admin.ventas.destroy')->middleware('can:Ventas');
+    Route::post('/admin/ventas/cliente/create',  'cliente_store')->name('admin.ventas.cliente.store')->middleware('can:Ventas');
 
 });
 
@@ -195,36 +201,51 @@ Route::controller(DetalleVentaController::class)->middleware('auth')->group(func
 
 //tuta para el inenatrio
 Route::controller(InventarioController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/inventarios', 'index')->name('admin.inventarios.index');
-    Route::get('/admin/inventarios/reporte', 'reporte')->name('admin.inventarios.reporte');
+    Route::get('/admin/inventarios', 'index')->name('admin.inventarios.index')->middleware('can:Inventario');
+    Route::get('/admin/inventarios/reporte', 'reporte')->name('admin.inventarios.reporte')->middleware('can:Inventario');
 
-    
 });
 
 
 //rutas para arqueos
 
 Route::controller(ArqueoController::class)->middleware('auth')->group(function(){
-    Route::get('/admin/arqueos', 'index')->name('admin.arqueos.index');
-    Route::get('/admin/arqueos/reporte', 'reporte')->name('admin.arqueos.reporte');
+    Route::get('/admin/arqueos', 'index')->name('admin.arqueos.index')->middleware('can:Arqueos');
+    Route::get('/admin/arqueos/reporte', 'reporte')->name('admin.arqueos.reporte')->middleware('can:Arqueos');
 
-    Route::get('/admin/arqueos/create', 'create')->name('admin.arqueos.create');
-    Route::post('/admin/arqueos/create',  'store')->name('admin.arqueos.store');
-    Route::get('/admin/arqueos/{id}','show')->name('admin.arqueos.show');
-    Route::get('/admin/arqueos/{id}/edit',  'edit')->name('admin.arqueos.edit');
+    Route::get('/admin/arqueos/create', 'create')->name('admin.arqueos.create')->middleware('can:Arqueos');
+    Route::post('/admin/arqueos/create',  'store')->name('admin.arqueos.store')->middleware('can:Arqueos');
+    Route::get('/admin/arqueos/{id}','show')->name('admin.arqueos.show')->middleware('can:Arqueos');
+    Route::get('/admin/arqueos/{id}/edit',  'edit')->name('admin.arqueos.edit')->middleware('can:Arqueos');
 
-    Route::get('/admin/arqueos/{id}/ingreso-egreso',  'ingresoegreso')->name('admin.arqueos.ingresoegreso');
-    Route::post('/admin/arqueos/create_ingresos_egresos',  'store_ingresos_egresos')->name('admin.arqueos.store_ingresos_egresos');
+    Route::get('/admin/arqueos/{id}/ingreso-egreso',  'ingresoegreso')->name('admin.arqueos.ingresoegreso')->middleware('can:Arqueos');
+    Route::post('/admin/arqueos/create_ingresos_egresos',  'store_ingresos_egresos')->name('admin.arqueos.store_ingresos_egresos')->middleware('can:Arqueos');
 
     Route::get('/admin/arqueos/{id}/cierre',  'cierre')->name('admin.arqueos.cierre');
-    Route::post('/admin/arqueos/create_cierre',  'store_cierre')->name('admin.arqueos.store_cierre');
+    Route::post('/admin/arqueos/create_cierre',  'store_cierre')->name('admin.arqueos.store_cierre')->middleware('can:Arqueos');
 
 
-    Route::put('/admin/arqueos/{id}', 'update')->name('admin.arqueos.update');
-    Route::get('/admin/arqueos/{id}/confirm-delete', 'confirmDelete')->name('admin.arqueos.confirmDelete');
-    Route::delete('/admin/arqueos/{id}', 'destroy')->name('admin.arqueos.destroy');
+    Route::put('/admin/arqueos/{id}', 'update')->name('admin.arqueos.update')->middleware('can:Arqueos');
+    Route::get('/admin/arqueos/{id}/confirm-delete', 'confirmDelete')->name('admin.arqueos.confirmDelete')->middleware('can:Arqueos');
+    Route::delete('/admin/arqueos/{id}', 'destroy')->name('admin.arqueos.destroy')->middleware('can:Arqueos');
 
     
 
+});
+
+
+
+//rutas para permisos
+Route::controller(PermisoController::class)->middleware('auth')->group(function(){
+    Route::get('/admin/permisos', 'index')->name('admin.permisos.index')->middleware('can:Permisos');
+    //Route::get('/admin/permisos/reporte', 'reporte')->name('admin.permisos.reporte');
+
+    Route::get('/admin/permisos/create', 'create')->name('admin.permisos.create')->middleware('can:Permisos');
+    Route::post('/admin/permisos/create',  'store')->name('admin.permisos.store')->middleware('can:Permisos');
+    Route::get('/admin/permisos/{id}','show')->name('admin.permisos.show')->middleware('can:Permisos');
+    Route::get('/admin/permisos/{id}/edit',  'edit')->name('admin.permisos.edit')->middleware('can:Permisos');
+    Route::put('/admin/permisos/{id}', 'update')->name('admin.permisos.update')->middleware('can:Permisos');
+    Route::get('/admin/permisos/{id}/confirm-delete', 'confirmDelete')->name('admin.permisos.confirmDelete')->middleware('can:Permisos');
+    Route::delete('/admin/permisos/{id}', 'destroy')->name('admin.permisos.destroy')->middleware('can:Permisos');
 });
 

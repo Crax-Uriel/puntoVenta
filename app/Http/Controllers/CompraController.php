@@ -47,7 +47,8 @@ class CompraController extends Controller
         $request->validate([
             'fecha_compra' =>'required|date',
             'comprobante_compra' =>'required|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]+$/|max:100|string',
-            'precio_total' => 'required|numeric'
+            'precio_total' => 'required|numeric',
+            'proveedor_id' => 'required|numeric',
         ]);
 
         $compra = new Compra();
