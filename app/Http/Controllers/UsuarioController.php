@@ -57,7 +57,7 @@ class UsuarioController extends Controller
     public function update(Request $request,$id){
         $usuario = User::find($id);
         $request->validate([
-            'name' =>'required|regex:/^[A-Za-z\s]+$/|max:100',
+            'name' =>'required|regex:/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/|max:100',
             'email' =>'required|max:250|unique:users,email,'.$usuario->id,
             'password' =>'nullable|max:250|confirmed',
         ]);

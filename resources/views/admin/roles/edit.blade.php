@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <br>
-    <h4 class="m-0">Actulizar Rol: $rol->name</h4>
+    <h4 class="m-0">Actulizar Rol:  {{$rol->name}} </h4>
     <br>
     <div class="row">
         <div class="col-md-6" style="font-size: 15px;">

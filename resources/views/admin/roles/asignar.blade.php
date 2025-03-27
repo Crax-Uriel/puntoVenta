@@ -24,7 +24,6 @@
                                 @foreach ($grupoPermisos as $permiso)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="permisos[]" value=" {{$permiso->id}} " {{$rol->hasPermissionTo($permiso->name) ? 'checked':''}}>
-
                                         <label for="" class="form-check-label"> {{$permiso->name}} </label>
 
                                     </div>
